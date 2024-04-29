@@ -5,8 +5,9 @@ class bbox:
         self.x =x
         self.y=y
         self.h=h
-        self.w =w
-        
+        self.w=w
+    def __str__(self) -> str:
+        return "{" + f"x:{self.x},y:{self.y},h:{self.w},h:{self.w}" + "}"
     @property
     def x(self)->int: return self._x
     @x.setter
@@ -33,7 +34,6 @@ class bbox:
 class element:
     def __init__(self,bbox:bbox) -> None:
         self._bbox = bbox
-    
     @property
     def bbox(self)->bbox: return self._bbox
 
@@ -53,6 +53,8 @@ class text(element):
     @value.setter
     def value(self, value:str):
         self._value = value
+    def __str__(self) -> str:
+        return f"Bound Box: {self.bbox}" + "\n" + f"Text :{self.value}" 
 class image(element):
     def __init__(self, bbox: bbox,value:bytes) -> None:
         super().__init__(bbox)
